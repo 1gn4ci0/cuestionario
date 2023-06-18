@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport2" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    /* Estilos para hacer el cuestionario responsivo */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      text-align:left;
+    ;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question p {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .options button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #559DFF;
+    }
+
+    .options button:hover {
+      background-color: #1D1A70;
+    }
+
+    .options button.selected {
+      background-color: #1D1A70;
+      color: white;
+    }
+    .custom-label {
+      font-size: 1.5rem;
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+
+<label for="empresaInput">Nombre de la empresa:</label>
+<input type="text" id="empresaInput" placeholder="Ingrese el nombre de la empresa">
+
+
+<h1>Proceso Clínico</h1>
+
+<div class="question">
+  <p>1. Eficiencia & eficacia</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>2. Seguridad Asistencial</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>3. Centro en el paciente</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>4. Registro clínico</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<h1>Proceso Técnico: Compatibilidad</h1>
+
+<div class="question">
+  <p>1. Interoperabilidad</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<h1>Proceso Técnico: Usabilidad</h1>
+
+<div class="question">
+  <p>1. Pruebas de usuario</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>2. Errores de usuario</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>3. Capacidad de aprendizaje</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>4. Accesibilidad</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<h1>Proceso Técnico: Fiabilidad</h1>
+
+<div class="question">
+  <p>1. Eficiencia de desempeño</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>2. Tolerancia a fallos</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>3. Capacidad de recuperacion</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>4. Arquitectura</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>5. Otros aspectos</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<h1>Proceso Técnico: Seguridad</h1>
+
+<div class="question">
+  <p>1. Autenticacion </p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>2. Autorizacion</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>3. Criptografia</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>4. Gestion contraseñas</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>5. Integridad</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>6. Autenticidad</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>7. Gestion de riesgos</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>8. Documentacion</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+    <button onclick="selectOption(this, 2)">2</button>
+    <button onclick="selectOption(this, 3)">3</button>
+  </div>
+</div>
+
+<h1>Anexo Técnico: Usabilidad y Accesibilidad</h1>
+
+<div class="question">
+  <p>1. Manual de usuario</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>2. Guia rapida de uso y resolucion de problemas baja</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>3. Mecanismos de accesibilidad para personas con discapacidad</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>4. Contar con mesa de ayuda</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<h1>Anexo Técnico: Seguridad y control</h1>
+
+<div class="question">
+  <p>1. Matriz de roles con segregacion de funciones para acceso a distintos niveles</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>2. Software debe poseer control de accesos</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>3. Identificacion de usuario con clave unica del estado</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>4. Autenticacion de dos factores</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>5. Permitir identificacion visual del prestador al momento de la presentacion</p>
+  <div class="options">
+
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>6. Identificador de sesion debe ser unico</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>7. Generar los identificadores de sesion durante la autenticacion y re-autenticacion</p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<h1>Anexo Técnico: Aseguramiento de calidad de servicios del SW</h1>
+
+<div class="question">
+  <p>1. Configuracion de ambiente de pruebas<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>2. Casos de prueba<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>3. Datos de pruebas<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>4. Flujos<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<h1>Anexo Técnico: Pruebas de seguridad de la informacion, carga y estres</h1>
+
+<div class="question">
+  <p>1. Pruebas de seguridad y validacion<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>2. Pruebas de carga y stress<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<h1>Anexo Técnico: Requerimientos de auditoria</h1>
+
+<div class="question">
+  <p>1. Registro de eventos (hora, usuario, origen, transaccion)<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>2. Cantidad de atenciones y detalle de ellas<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>3. Actualizacion de versiones de la aplicacion con trazabilidad de cambios<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<h1>Anexo Técnico: Requerimientos tecnicos especificos</h1>
+
+<div class="question">
+  <p>1. Diseño tecnico de la aplicacion(Lenguajes, base de datos, metodos encriptacion, etc)<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>2. Datos referidos a la Interoperabilidad de informacion en base a estandares definidos<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>3. Descripcion de metodos posibles de integracion via webservices, soap, rest, etc<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<div class="question">
+  <p>4. Integracion con FONASA<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<h1>Anexo Técnico: Proceso Clínico</h1>
+
+<div class="question">
+  <p>1. Consentimiento informado<p>
+  <div class="options">
+    <button onclick="selectOption(this, 0)">0</button>
+    <button onclick="selectOption(this, 1)">1</button>
+  </div>
+</div>
+
+<script>
+  function selectOption(button, value)
+  {
+    var buttons = button.parentNode.querySelectorAll("button");
+    buttons.forEach(function(btn) {
+      btn.classList.remove("selected");
+    });
+    button.classList.add("selected");
+    button.parentNode.previousElementSibling.querySelector("input").value = value;
+  }
+</script>
+
+
+<!-------------------------------------------------------------------------------------------------------------->
+
+<div class="container">
+
+  <div class="btn-group">
+    <button class="btn btn-primary custom-button" onclick="registrarOpciones()">Registrar Opciones Seleccionadas</button>
+    <button class="btn btn-primary custom-button" onclick="mostrarOpciones()">Ver Opciones Seleccionadas</button>
+    <button class="btn btn-primary custom-button" onclick="promedio_ProcesoCens()">Evaluacion CENS (PROMEDIO)</button>
+    <button class="btn btn-primary custom-button" onclick="crearTabla()">Mostrar tabla</button>
+  </div>
+  <div id="opcionesSeleccionadas"></div>
+  <div id="tablaPromedios"></div>
+  <div  style="position: relative; height:40vh; width:80vw">
+    <canvas id="graficoPromedios"></canvas>
+    <canvas  id="graficoCumplimiento"></canvas>
+    <canvas id="graficoDobleBarra"></canvas>
+  </div>
+
+
+
+  <div  style="position: relative; height:40vh; width:80vw">
+
+  </div>
+</div>
+
+
+<script>
+  let empresas = [];
+  let totalLogradoOptimoAceptable = 0;
+
+
+  function selectOption(button, value) {
+    const options = button.parentNode.querySelectorAll('button');
+    options.forEach((btn) => btn.classList.remove('selected'));
+
+    button.classList.add('selected');
+  }
+
+  function mostrarOpciones() {
+
+    // Obtener la referencia al elemento HTML donde se mostrarán las opciones seleccionadas
+    const opcionesSeleccionadasDiv = document.getElementById('opcionesSeleccionadas');
+    opcionesSeleccionadasDiv.innerHTML = '';
+
+    // Verificar si no hay empresas seleccionadas
+    if (empresas.length === 0) {
+      opcionesSeleccionadasDiv.innerHTML = '<p>No hay opciones seleccionadas.</p>';
+      return;
+    }
+
+    // Declarar variables para almacenar la suma y el contador de empresas
+    let sumaPorcentajeCumplimiento = 0;
+    let sumaPorcentajeCumplimientoAnexo = 0;
+    let contadorEmpresas = 0;
+
+    // Recorrer cada empresa en la lista
+    empresas.forEach((empresa) => {
+      // Crear un contenedor para cada empresa
+      const empresaContainer = document.createElement('div');
+      empresaContainer.classList.add('empresa-container');
+
+      // Crear un título para la empresa
+      const empresaTitle = document.createElement('h2');
+      empresaTitle.textContent = empresa.nombre;
+      empresaContainer.appendChild(empresaTitle);
+
+      // Crear una tabla para mostrar las opciones seleccionadas
+      const opcionesSeleccionadasTable = document.createElement('table');
+      opcionesSeleccionadasTable.classList.add('opciones-table');
+
+
+
+      // Crear encabezado de la tabla
+      const tableHead = document.createElement('thead');
+      const headRow = document.createElement('tr');
+      const preguntaHeader = document.createElement('th');
+      preguntaHeader.textContent = 'Pregunta';
+      const opcionHeader = document.createElement('th');
+      opcionHeader.textContent = 'Opción';
+
+      headRow.appendChild(preguntaHeader);
+      headRow.appendChild(opcionHeader);
+
+      tableHead.appendChild(headRow);
+      opcionesSeleccionadasTable.appendChild(tableHead);
+
+      // Crear cuerpo de la tabla
+      const tableBody = document.createElement('tbody');
+      const table2Body = document.createElement('tbody');
+      let riesgoNoCumpleCount = 0;
+      let logradoOptimoAceptableCount = 0;
+      let nologradoOptimoAceptableCount = 0;
+      let totalPreguntas = 0;
+
+
+
+      // Recorrer cada opción seleccionada de la empresa
+      empresa.opcionesSeleccionadas.forEach((opcionSeleccionada) => {
+        const pregunta = opcionSeleccionada.pregunta;
+        const opcion = opcionSeleccionada.opcion;
+
+        // Contar las preguntas seleccionadas relevantes
+        if (
+                pregunta === '1. Eficiencia & eficacia' ||
+                pregunta === '2. Seguridad Asistencial' ||
+                pregunta === '3. Centro en el paciente' ||
+                pregunta === '4. Registro clínico' ||
+                pregunta === '1. Interoperabilidad' ||
+                pregunta === '1. Pruebas de usuario' ||
+                pregunta === '2. Errores de usuario' ||
+                pregunta === '3. Capacidad de aprendizaje' ||
+                pregunta === '4. Accesibilidad' ||
+                pregunta === '1. Eficiencia de desempeño' ||
+                pregunta === '2. Tolerancia a fallos' ||
+                pregunta === '3. Capacidad de recuperacion' ||
+                pregunta === '4. Arquitectura' ||
+                pregunta === '5. Otros aspectos' ||
+                pregunta === '1. Autenticacion' ||
+                pregunta === '2. Autorizacion' ||
+                pregunta === '3. Criptografia' ||
+                pregunta === '4. Gestion contraseñas' ||
+                pregunta === '5. Integridad' ||
+                pregunta === '6. Autenticidad' ||
+                pregunta === '7. Gestion de riesgos' ||
+                pregunta === '8. Documentacion'
+        ) {
+          totalPreguntas++;
+
+          if (opcion === '0' || opcion === '1') {
+            riesgoNoCumpleCount++;
+          }
+
+          if (opcion === '2' || opcion === '3') {
+            logradoOptimoAceptableCount++;
+          }
+        }
+
+        // Crear una fila de la tabla para mostrar la pregunta y la opción seleccionada
+        const row = document.createElement('tr');
+        const preguntaCell = document.createElement('td');
+        preguntaCell.textContent = pregunta;
+        row.appendChild(preguntaCell);
+
+        const opcionCell = document.createElement('td');
+        opcionCell.textContent = opcion;
+        row.appendChild(opcionCell);
+
+        tableBody.appendChild(row);
+      });
+
+      // Agregar una fila para mostrar el número de items logrados, óptimos o aceptables
+      const totalLogradoOptimoAceptableRow = document.createElement('tr');
+      const totalLogradoOptimoAceptableLabelCell = document.createElement('td');
+      totalLogradoOptimoAceptableLabelCell.textContent = 'NUMERO ITEMS logrado, óptimo o aceptable (SELLO EMPRESAS)';
+      totalLogradoOptimoAceptableRow.appendChild(totalLogradoOptimoAceptableLabelCell);
+
+      const totalLogradoOptimoAceptableValueCell = document.createElement('td');
+      totalLogradoOptimoAceptableValueCell.setAttribute('colspan', '2');
+      totalLogradoOptimoAceptableValueCell.textContent = logradoOptimoAceptableCount.toString();
+      totalLogradoOptimoAceptableRow.appendChild(totalLogradoOptimoAceptableValueCell);
+
+      tableBody.appendChild(totalLogradoOptimoAceptableRow);
+
+      // Agregar una fila para mostrar el número de items de riesgo o no cumplidos
+      const riesgoNoCumpleRow = document.createElement('tr');
+      const riesgoNoCumpleLabelCell = document.createElement('td');
+      riesgoNoCumpleLabelCell.textContent = 'NUMERO DE ITEMS riesgo o no cumple (SELLO EMPRESAS)';
+      riesgoNoCumpleRow.appendChild(riesgoNoCumpleLabelCell);
+
+      const riesgoNoCumpleValueCell = document.createElement('td');
+      riesgoNoCumpleValueCell.setAttribute('colspan', '2');
+      riesgoNoCumpleValueCell.textContent = riesgoNoCumpleCount.toString();
+      riesgoNoCumpleRow.appendChild(riesgoNoCumpleValueCell);
+
+      tableBody.appendChild(riesgoNoCumpleRow);
+
+      // Agregar una fila para mostrar el total de preguntas
+      const totalPreguntasRow = document.createElement('tr');
+      const totalPreguntasLabelCell = document.createElement('td');
+      totalPreguntasLabelCell.textContent = 'total preguntas (SELLO EMPRESAS)';
+      totalPreguntasRow.appendChild(totalPreguntasLabelCell);
+
+      const totalPreguntasValueCell = document.createElement('td');
+      totalPreguntasValueCell.setAttribute('colspan', '2');
+      totalPreguntasValueCell.textContent = totalPreguntas.toString();
+      totalPreguntasRow.appendChild(totalPreguntasValueCell);
+
+      tableBody.appendChild(totalPreguntasRow);
+
+
+      // Calcular el porcentaje de cumplimiento
+      const porcentajeCumplimiento = totalPreguntas === 0 ? 0 : ((totalPreguntas - riesgoNoCumpleCount) / totalPreguntas) * 100;
+
+      // Agregar el porcentaje de cumplimiento al acumulador
+      sumaPorcentajeCumplimiento += porcentajeCumplimiento;
+
+      // Agregar una fila para mostrar el porcentaje de cumplimiento
+      const cumplimientoRow = document.createElement('tr');
+      const cumplimientoLabelCell = document.createElement('td');
+      cumplimientoLabelCell.textContent = '% CUMPLIMIENTO (SELLO EMPRESAS)';
+      cumplimientoRow.appendChild(cumplimientoLabelCell);
+
+
+      const cumplimientoValueCell = document.createElement('td');
+      cumplimientoValueCell.setAttribute('colspan', '2');
+      cumplimientoValueCell.textContent = porcentajeCumplimiento.toFixed(2) + '%';
+      cumplimientoRow.appendChild(cumplimientoValueCell);
+
+      tableBody.appendChild(cumplimientoRow);
+
+
+      // Agregar el cuerpo de la tabla a la tabla
+      opcionesSeleccionadasTable.appendChild(tableBody);
+      opcionesSeleccionadasTable.appendChild(tableBody);
+
+      // Agregar la tabla al contenedor de la empresa
+      empresaContainer.appendChild(opcionesSeleccionadasTable);
+      empresaContainer.appendChild(opcionesSeleccionadasTable);
+
+      // Agregar el contenedor de la empresa al contenedor principal
+      opcionesSeleccionadasDiv.appendChild(empresaContainer);
+      opcionesSeleccionadasDiv.appendChild(empresaContainer);
+
+      // Agregar una fila para mostrar el número de items logrados y no logrados
+      const logradosRow = document.createElement('tr');
+      const nologradosRow = document.createElement('tr');
+
+      const logradosLabelCell = document.createElement('td');
+      logradosLabelCell.textContent = 'NUMERO logrados (ANEXO TÉCNICO)';
+      logradosRow.appendChild(logradosLabelCell);
+
+      const nologradosLabelCell = document.createElement('td');
+      nologradosLabelCell.textContent = 'NUMERO No logrado (ANEXO TÉCNICO)';
+      nologradosRow.appendChild(nologradosLabelCell);
+
+      const logradosValueCell = document.createElement('td');
+      logradosValueCell.setAttribute('colspan', '2');
+      logradosValueCell.textContent = logradoOptimoAceptableCount.toString();
+      logradosRow.appendChild(logradosValueCell);
+      tableBody.appendChild(logradosRow);
+
+      const nologradosValueCell = document.createElement('td');
+      nologradosValueCell.setAttribute('colspan', '2');
+      nologradosValueCell.textContent = nologradoOptimoAceptableCount.toString();
+      nologradosRow.appendChild(nologradosValueCell);
+      tableBody.appendChild(nologradosRow);
+
+      //code nuevo
+      const relevantQuestions = [
+        '1. Manual de usuario',
+        '2. Guia rapida de uso y resolucion de problemas baja',
+        '3. Mecanismos de accesibilidad para personas con discapacidad',
+        '4. Contar con mesa de ayuda',
+        '1. Matriz de roles con segregacion de funciones para acceso a distintos niveles',
+        '2. Software debe poseer control de accesos',
+        '3. Identificacion de usuario con clave unica del estado',
+        '4. Autenticacion de dos factores',
+        '5. Permitir identificacion visual del prestador al momento de la presentacion',
+        '6. Identificador de sesion debe ser unico',
+        '7. Generar los identificadores de sesion durante la autenticacion y re-autenticacion',
+        '1. Configuracion de ambiente de pruebas',
+        '2. Casos de prueba',
+        '3. Datos de pruebas',
+        '4. Flujos',
+        '1. Pruebas de seguridad y validacion',
+        '2. Pruebas de carga y stress',
+        '1. Registro de eventos (hora, usuario, origen, transaccion)',
+        '2. Cantidad de atenciones y detalle de ellas',
+        '3. Actualizacion de versiones de la aplicacion con trazabilidad de cambios',
+        '1. Diseño tecnico de la aplicacion(Lenguajes, base de datos, metodos encriptacion, etc)',
+        '2. Datos referidos a la Interoperabilidad de informacion en base a estandares definidos',
+        '3. Descripcion de metodos posibles de integracion via webservices, soap, rest, etc',
+        '4. Integracion con FONASA',
+        '1. Consentimiento informado'
+      ];
+
+      const relevantOpcionesSeleccionadas = empresa.opcionesSeleccionadas.filter((opcionSeleccionada) =>
+      {
+        return relevantQuestions.includes(opcionSeleccionada.pregunta) && opcionSeleccionada.opcion === '1';
+      });
+
+      const norelevantOpcionesSeleccionadas = empresa.opcionesSeleccionadas.filter((opcionSeleccionada) =>
+      {
+        return relevantQuestions.includes(opcionSeleccionada.pregunta) && opcionSeleccionada.opcion === '0';
+      });
+
+
+      const logradosCount = relevantOpcionesSeleccionadas.length;
+      const nologradosCount = norelevantOpcionesSeleccionadas.length;
+
+      logradosValueCell.textContent = logradosCount.toString();
+      nologradosValueCell.textContent = nologradosCount.toString();
+
+      // Calcular el total de preguntas
+      const tabla2_totalPreguntas = logradosCount + nologradosCount;
+
+// Crear una nueva fila para mostrar el total de preguntas
+      const tabla2_totalPreguntasRow = document.createElement('tr');
+
+      const tabla2_totalPreguntasLabelCell = document.createElement('td');
+      tabla2_totalPreguntasLabelCell.textContent = 'Total preguntas (ANEXO TÉCNICO)';
+      tabla2_totalPreguntasRow.appendChild(tabla2_totalPreguntasLabelCell);
+
+      const tabla2_totalPreguntasValueCell = document.createElement('td');
+      tabla2_totalPreguntasValueCell.setAttribute('colspan', '2');
+      tabla2_totalPreguntasValueCell.textContent = tabla2_totalPreguntas.toString();
+      tabla2_totalPreguntasRow.appendChild(tabla2_totalPreguntasValueCell);
+
+
+// Agregar la fila al cuerpo de la tabla
+      tableBody.appendChild(tabla2_totalPreguntasRow);
+
+      // Calcular el porcentaje de cumplimiento
+      const tabla2_porcentajeCumplimiento = (logradosCount / tabla2_totalPreguntas) * 100;
+
+
+// Crear una nueva fila para mostrar el porcentaje de cumplimiento
+      const porcentajeCumplimientoRow = document.createElement('tr');
+
+      const porcentajeCumplimientoLabelCell = document.createElement('td');
+      porcentajeCumplimientoLabelCell.textContent = 'Porcentaje cumplimiento (ANEXO TÉCNICO)';
+      porcentajeCumplimientoRow.appendChild(porcentajeCumplimientoLabelCell);
+
+      const porcentajeCumplimientoValueCell = document.createElement('td');
+      porcentajeCumplimientoValueCell.setAttribute('colspan', '2');
+      porcentajeCumplimientoValueCell.textContent = tabla2_porcentajeCumplimiento.toFixed(2) + '%';
+      porcentajeCumplimientoRow.appendChild(porcentajeCumplimientoValueCell);
+
+      // Agregar el porcentaje de cumplimiento del anexo técnico al acumulador
+      sumaPorcentajeCumplimientoAnexo += tabla2_porcentajeCumplimiento;
+      // Incrementar el contador de empresas
+      contadorEmpresas++;
+
+
+      // Agregar la fila al cuerpo de la tabla
+      tableBody.appendChild(porcentajeCumplimientoRow);
+
+    });
+
+    // Calcular los promedios
+    const promedioPorcentajeCumplimiento = sumaPorcentajeCumplimiento / contadorEmpresas;
+    const promedioPorcentajeCumplimientoAnexo = sumaPorcentajeCumplimientoAnexo / contadorEmpresas;
+
+    // Mostrar los promedios en un alert
+    alert(`Promedio "% CUMPLIMIENTO (SELLO EMPRESAS)": ${promedioPorcentajeCumplimiento.toFixed(2)}%\nPromedio "Porcentaje cumplimiento (ANEXO TÉCNICO)": ${promedioPorcentajeCumplimientoAnexo.toFixed(2)}%`);
+
+    // Obtén las referencias a los elementos HTML necesarios
+    const graficoDobleBarraCanvas = document.getElementById('graficoDobleBarra');
+    const ctx = graficoDobleBarraCanvas.getContext('2d');
+
+    if (window.myBar) {
+      window.myBar.clear();
+      window.myBar.destroy();
+    }
+
+// Define los datos del gráfico
+    const data = {
+      labels: ['Promedios'],
+      datasets: [
+        {
+          label: '% CUMPLIMIENTO (SELLO EMPRESAS)',
+          data: [promedioPorcentajeCumplimiento.toFixed(2)],
+          backgroundColor: 'rgba(54, 162, 235, 0.5)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1,
+        },
+        {
+          label: 'Porcentaje cumplimiento (ANEXO TÉCNICO)',
+          data: [promedioPorcentajeCumplimientoAnexo.toFixed(2)],
+          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1,
+        },
+      ],
+    };
+
+// Configura las opciones del gráfico
+    const options = {
+      indexAxis: 'y',
+      scales: {
+        x: {
+          beginAtZero: true,
+          max: 100,
+          ticks: {
+            stepSize: 10,
+          },
+        },
+      },
+    };
+
+// Crea el gráfico de doble barra
+    window.myBar = new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: options,
+    });
+
+
+  }
+
+
+
+  function registrarOpciones() {
+    const empresaInput = document.getElementById('empresaInput');
+    const nombreEmpresa = empresaInput.value.trim();
+
+    if (!nombreEmpresa) {
+      alert('Debe ingresar el nombre de la empresa.');
+      return;
+    }
+
+    const preguntas = document.querySelectorAll('.question');
+    const opcionesSeleccionadas = [];
+    let logradoOptimoAceptableCount = 0;
+
+    preguntas.forEach((pregunta) => {
+      const preguntaText = pregunta.querySelector('p').textContent.trim();
+      const opcionSeleccionada = pregunta.querySelector('.options button.selected');
+      const opcionSeleccionadaValue = opcionSeleccionada ? opcionSeleccionada.textContent.trim() : '';
+
+      opcionesSeleccionadas.push({
+        pregunta: preguntaText,
+        opcion: opcionSeleccionadaValue
+      });
+
+      // Desmarcar la opción seleccionada
+      if (opcionSeleccionada) {
+        opcionSeleccionada.classList.remove('selected');
+
+        // Contar los valores 2 y 3 seleccionados
+        if (opcionSeleccionadaValue === '2' || opcionSeleccionadaValue === '3') {
+          logradoOptimoAceptableCount++;
+        }
+      }
+    });
+
+    empresas.push({
+      nombre: nombreEmpresa,
+      opcionesSeleccionadas: opcionesSeleccionadas,
+      totalLogradoOptimoAceptable: logradoOptimoAceptableCount
+    });
+
+    // Limpiar el campo de entrada de la empresa
+    empresaInput.value = '';
+
+    // Mostrar mensaje de registro exitoso
+    alert('Registro Exitoso');
+  }
+
+  //FUNCION PROMEDIO PROCESO CLINICO
+  function promedio_ProcesoCens() {
+
+    const preguntas = ['1. Eficiencia & eficacia', '2. Seguridad Asistencial', '3. Centro en el paciente', '4. Registro clínico'];
+    const promedios = [];
+
+    // Obtener la referencia al elemento HTML donde se mostrarán las opciones seleccionadas
+    const opcionesSeleccionadasDiv = document.getElementById('opcionesSeleccionadas');
+    opcionesSeleccionadasDiv.innerHTML = '';
+
+    // Verificar si no hay empresas seleccionadas
+    if (empresas.length === 0) {
+      opcionesSeleccionadasDiv.innerHTML = '<p>No hay opciones seleccionadas.</p>';
+      return;
+    }
+
+    preguntas.forEach((pregunta) => {
+      let suma = 0;
+      let contador = 0;
+
+      empresas.forEach((empresa) => {
+        empresa.opcionesSeleccionadas.forEach((opcion) => {
+          if (opcion.pregunta === pregunta) {
+            // Solo se suman los valores seleccionados que sean números
+            const valorSeleccionado = parseFloat(opcion.opcion);
+            if (!isNaN(valorSeleccionado)) {
+              suma += valorSeleccionado;
+              contador++;
+            }
+          }
+        });
+      });
+
+      // Calcular el promedio
+      const promedio = contador > 0 ? suma / contador : 0;
+      promedios.push({pregunta: pregunta, promedio: promedio});
+    });
+
+    // Calcular el promedio total
+    let sumaTotal = 0;
+    let contadorTotal = 0;
+
+    promedios.forEach((promedio) => {
+      sumaTotal += promedio.promedio;
+      contadorTotal++;
+    });
+
+    const promedioTotal = contadorTotal > 0 ? sumaTotal / contadorTotal : 0;
+
+    // Mostrar los promedios individuales y el promedio total en un alert
+    let mensaje = '';
+    promedios.forEach((promedio) => {
+      mensaje += `${promedio.pregunta}: ${promedio.promedio.toFixed(2)}\n`;
+    });
+
+    mensaje += `\nPromedio Total: ${promedioTotal.toFixed(2)}`;
+
+    //alert('Promedios:\n' + mensaje);
+
+    //-------------------------------------------------------------------------
+    // PROMEDIO DE COMPATIBILIDAD
+    const preguntaInteroperabilidad = '1. Interoperabilidad';
+    const promediosInteroperabilidad = [];
+
+    empresas.forEach((empresa) => {
+      const opcionesSeleccionadasInteroperabilidad = empresa.opcionesSeleccionadas.find((opcion) => opcion.pregunta === preguntaInteroperabilidad);
+      if (opcionesSeleccionadasInteroperabilidad) {
+        const valorSeleccionado = parseFloat(opcionesSeleccionadasInteroperabilidad.opcion);
+        if (!isNaN(valorSeleccionado)) {
+          promediosInteroperabilidad.push(valorSeleccionado);
+        }
+      }
+    });
+
+// Calcular el promedio de Interoperabilidad
+    const promedioInteroperabilidad = promediosInteroperabilidad.length > 0 ? promediosInteroperabilidad.reduce((a, b) => a + b) / promediosInteroperabilidad.length : 0;
+
+// Mostrar el promedio de Interoperabilidad en un alert
+    //alert(`Promedio de Interoperabilidad: ${promedioInteroperabilidad.toFixed(2)}`);
+
+    //-------------------------------------------------------------------------
+    //PROMEDIO USABILIDAD
+
+    const opciones = ['1. Pruebas de usuario', '2. Errores de usuario', '3. Capacidad de aprendizaje', '4. Accesibilidad'];
+    let mensaje2 = 'Promedios:\n';
+    let sumaTotal2 = 0;
+    let contadorTotal2 = 0;
+
+    opciones.forEach((opcion) => {
+      let suma = 0;
+      let contador = 0;
+
+      empresas.forEach((empresa) => {
+        empresa.opcionesSeleccionadas.forEach((opcionSeleccionada) => {
+          if (opcionSeleccionada.pregunta === opcion) {
+            // Solo se suman los valores seleccionados que sean números
+            const valorSeleccionado = parseFloat(opcionSeleccionada.opcion);
+            if (!isNaN(valorSeleccionado)) {
+              suma += valorSeleccionado;
+              contador++;
+            }
+          }
+        });
+      });
+
+      // Calcular el promedio
+      const promedio = contador > 0 ? suma / contador : 0;
+
+      // Agregar el promedio al mensaje
+      mensaje2 += `${opcion}: ${promedio.toFixed(2)}\n`;
+
+      // Actualizar el promedio total
+      sumaTotal2 += promedio;
+      contadorTotal2++;
+    });
+
+// Calcular el promedio total
+    const promedioTotal2 = contadorTotal2 > 0 ? sumaTotal2 / contadorTotal2 : 0;
+
+// Agregar el promedio total al mensaje
+    mensaje2 += `\nPromedio Total: ${promedioTotal2.toFixed(2)}`;
+
+// Mostrar todos los promedios en un alert único
+    //alert(mensaje2);
+
+    //PROMEDIO FIABILIDAD
+
+    const opciones3 = ['1. Eficiencia de desempeño', '2. Tolerancia a fallos', '3. Capacidad de recuperacion', '4. Arquitectura', '5. Otros aspectos'];
+    let mensaje3 = 'Promedios:\n';
+    let sumaTotal3 = 0;
+    let contadorTotal3 = 0;
+
+    opciones3.forEach((opcion) => {
+      let suma = 0;
+      let contador = 0;
+
+      empresas.forEach((empresa) => {
+        empresa.opcionesSeleccionadas.forEach((opcionSeleccionada) => {
+          if (opcionSeleccionada.pregunta === opcion) {
+            // Solo se suman los valores seleccionados que sean números
+            const valorSeleccionado = parseFloat(opcionSeleccionada.opcion);
+            if (!isNaN(valorSeleccionado)) {
+              suma += valorSeleccionado;
+              contador++;
+            }
+          }
+        });
+      });
+
+      // Calcular el promedio
+      const promedio = contador > 0 ? suma / contador : 0;
+
+      // Agregar el promedio al mensaje
+      mensaje3 += `${opcion}: ${promedio.toFixed(2)}\n`;
+
+      // Actualizar el promedio total
+      sumaTotal3 += promedio;
+      contadorTotal3++;
+    });
+
+// Calcular el promedio total
+    const promedioTotal3 = contadorTotal3 > 0 ? sumaTotal3 / contadorTotal3 : 0;
+
+// Agregar el promedio total al mensaje
+    mensaje3 += `\nPromedio Total: ${promedioTotal3.toFixed(2)}`;
+
+// Mostrar todos los promedios en un único alert
+    //alert(mensaje3);
+
+
+    //PROMEDIO SEGURIDAD
+
+    const opciones4 = ['1. Autenticacion', '2. Autorizacion', '3. Criptografia', '4. Gestion contraseñas', '5. Integridad', '6. Autenticidad', '7. Gestion de riesgos', '8. Documentacion'];
+    let mensaje4 = 'Promedios:\n';
+    let sumaTotal4 = 0;
+    let contadorTotal4 = 0;
+
+    opciones4.forEach((opcion) => {
+      let suma = 0;
+      let contador = 0;
+
+      empresas.forEach((empresa) => {
+        empresa.opcionesSeleccionadas.forEach((opcionSeleccionada) => {
+          if (opcionSeleccionada.pregunta === opcion) {
+            // Solo se suman los valores seleccionados que sean números
+            const valorSeleccionado = parseFloat(opcionSeleccionada.opcion);
+            if (!isNaN(valorSeleccionado)) {
+              suma += valorSeleccionado;
+              contador++;
+            }
+          }
+        });
+      });
+
+      // Calcular el promedio
+      const promedio = contador > 0 ? suma / contador : 0;
+
+      // Agregar el promedio al mensaje
+      mensaje4 += `${opcion}: ${promedio.toFixed(2)}\n`;
+
+      // Actualizar el promedio total
+      sumaTotal4 += promedio;
+      contadorTotal4++;
+    });
+
+// Calcular el promedio total
+    const promedioTotal4 = contadorTotal4 > 0 ? sumaTotal4 / contadorTotal4 : 0;
+
+// Agregar el promedio total al mensaje
+    mensaje4 += `\nPromedio Total: ${promedioTotal4.toFixed(2)}`;
+
+// Mostrar todos los promedios en un único alert
+    //alert(mensaje4);
+
+
+    //NUMEROS DE 2 Y 3 PROCESO CLINICO
+
+    let mensaje5 = 'Cantidad total de valores "2" y "3" por pregunta:\n\n';
+    let sumaPorcentajes = 0;
+    let contadorPorcentajes = 0;
+
+    const preguntas5 = ['1. Eficiencia & eficacia', '2. Seguridad Asistencial', '3. Centro en el paciente', '4. Registro clínico'];
+
+    preguntas5.forEach((pregunta) => {
+      let count2 = 0;
+      let count3 = 0;
+      let count4 = 0;
+      let porcentaje = 0;
+
+      empresas.forEach((empresa) => {
+        empresa.opcionesSeleccionadas.forEach((opcion) => {
+          if (opcion.pregunta === pregunta) {
+            if (opcion.opcion === '2') {
+              count2++;
+            } else if (opcion.opcion === '3') {
+              count3++;
+            }
+            count4 = count2 + count3;
+            porcentaje = (count4 / 4) * 100;
+          }
+        });
+      });
+
+      sumaPorcentajes += porcentaje;
+      contadorPorcentajes++;
+
+      mensaje5 += `${pregunta}: Numero de 2 y 3: ${count4}, Porcentaje: ${porcentaje}%\n`;
+    });
+
+// Calcular el promedio de los porcentajes
+    const promedioPorcentajes = sumaPorcentajes / contadorPorcentajes;
+
+// Agregar el promedio al mensaje
+    mensaje5 += `\nPromedio de los porcentajes: ${promedioPorcentajes.toFixed(2)}%`;
+
+// Mostrar la cantidad total de valores "2" y "3" por pregunta y el promedio de los porcentajes en un único alert
+    //alert(mensaje5);
+
+
+    //NUMEROS DE 2 Y 3 COMPATIBILIDAD
+
+    let mensaje6 = 'Cantidad total de valores "2" y "3" por pregunta:\n\n';
+    let sumaPorcentajes2 = 0;
+    let contadorPorcentajes2 = 0;
+
+    const preguntas6 = ['1. Interoperabilidad'];
+
+    preguntas6.forEach((pregunta) => {
+      let count2 = 0;
+      let count3 = 0;
+      let count4 = 0;
+      let porcentaje = 0;
+
+      empresas.forEach((empresa) => {
+        empresa.opcionesSeleccionadas.forEach((opcion) => {
+          if (opcion.pregunta === pregunta) {
+            if (opcion.opcion === '2') {
+              count2++;
+            } else if (opcion.opcion === '3') {
+              count3++;
+            }
+            count4 = count2 + count3;
+            porcentaje = (count4 / 4) * 100;
+          }
+        });
+      });
+
+      sumaPorcentajes2 += porcentaje;
+      contadorPorcentajes2++;
+
+      mensaje6 += `${pregunta}: Numero de 2 y 3: ${count4} Porcentaje: ${porcentaje}% \n`;
+    });
+
+    // Calcular el promedio de los porcentajes
+    const promedioPorcentajes2 = sumaPorcentajes2 / contadorPorcentajes2;
+
+// Agregar el promedio al mensaje
+    mensaje6 += `\nPromedio de los porcentajes: ${promedioPorcentajes2.toFixed(2)}%`;
+
+// Mostrar la cantidad total de valores "2" y "3" por pregunta en un único alert
+    //alert(mensaje6);
+
+    //----------------------------------------------------------------------------------------------------
+
+    //NUMEROS DE 2 Y 3 USABILIDAD
+
+    let mensaje7 = 'Cantidad total de valores "2" y "3" por pregunta:\n\n';
+    let sumaPorcentajes3 = 0;
+    let contadorPorcentajes3 = 0;
+
+    const preguntas7 = ['1. Pruebas de usuario', '2. Errores de usuario', '3. Capacidad de aprendizaje', '4. Accesibilidad'];
+
+    preguntas7.forEach((pregunta) => {
+      let count2 = 0;
+      let count3 = 0;
+      let count4 = 0;
+      let porcentaje = 0;
+
+      empresas.forEach((empresa) => {
+        empresa.opcionesSeleccionadas.forEach((opcion) => {
+          if (opcion.pregunta === pregunta) {
+            if (opcion.opcion === '2') {
+              count2++;
+            } else if (opcion.opcion === '3') {
+              count3++;
+            }
+            count4 = count2 + count3;
+            porcentaje = (count4 / 4) * 100;
+          }
+        });
+      });
+
+      sumaPorcentajes3 += porcentaje;
+      contadorPorcentajes3++;
+
+      mensaje7 += `${pregunta}: Numero de 2 y 3: ${count4} Porcentaje: ${porcentaje}% \n`;
+    });
+
+    // Calcular el promedio de los porcentajes
+    const promedioPorcentajes3 = sumaPorcentajes3 / contadorPorcentajes3;
+
+// Agregar el promedio al mensaje
+    mensaje7 += `\nPromedio de los porcentajes: ${promedioPorcentajes3.toFixed(2)}%`;
+
+// Mostrar la cantidad total de valores "2" y "3" por pregunta en un único alert
+    //alert(mensaje7);
+
+    //----------------------------------------------------------------------------------------------------
+
+    //NUMEROS DE 2 Y 3 FIABILIDAD
+    let mensaje8 = 'Cantidad total de valores "2" y "3" por pregunta:\n\n';
+    let sumaPorcentajes4 = 0;
+    let contadorPorcentajes4 = 0;
+
+    const preguntas8 = ['1. Eficiencia de desempeño', '2. Tolerancia a fallos', '3. Capacidad de recuperacion', '4. Arquitectura', '5. Otros aspectos'];
+
+    preguntas8.forEach((pregunta) => {
+      let count2 = 0;
+      let count3 = 0;
+      let count4 = 0;
+      let porcentaje = 0;
+
+      empresas.forEach((empresa) => {
+        empresa.opcionesSeleccionadas.forEach((opcion) => {
+          if (opcion.pregunta === pregunta) {
+            if (opcion.opcion === '2') {
+              count2++;
+            } else if (opcion.opcion === '3') {
+              count3++;
+            }
+            count4 = count2 + count3;
+            porcentaje = (count4 / 4) * 100;
+          }
+        });
+      });
+
+      sumaPorcentajes4 += porcentaje;
+      contadorPorcentajes4++;
+
+      mensaje8 += `${pregunta}: Numero de 2 y 3: ${count4} Porcentaje: ${porcentaje}% \n`;
+    });
+
+    // Calcular el promedio de los porcentajes
+    const promedioPorcentajes4 = sumaPorcentajes4 / contadorPorcentajes4;
+
+// Agregar el promedio al mensaje
+    mensaje8 += `\nPromedio de los porcentajes: ${promedioPorcentajes4.toFixed(2)}%`;
+
+// Mostrar la cantidad total de valores "2" y "3" por pregunta en un único alert
+    //alert(mensaje8);
+
+    //----------------------------------------------------------------------------------------------------
+
+    //NUMEROS DE 2 Y 3 SEGURIDAD
+    let mensaje9 = 'Cantidad total de valores "2" y "3" por pregunta:\n\n';
+    let sumaPorcentajes5 = 0;
+    let contadorPorcentajes5 = 0;
+
+    const preguntas9 = ['1. Autenticacion', '2. Autorizacion', '3. Criptografia', '4. Gestion contraseñas', '5. Integridad', '6. Autenticidad', '7. Gestion de riesgos', '8. Documentacion'];
+
+    preguntas9.forEach((pregunta) => {
+      let count2 = 0;
+      let count3 = 0;
+      let count4 = 0;
+      let porcentaje = 0;
+
+      empresas.forEach((empresa) => {
+        empresa.opcionesSeleccionadas.forEach((opcion) => {
+          if (opcion.pregunta === pregunta) {
+            if (opcion.opcion === '2') {
+              count2++;
+            } else if (opcion.opcion === '3') {
+              count3++;
+            }
+            count4 = count2 + count3;
+            porcentaje = (count4 / 4) * 100;
+          }
+        });
+      });
+
+      sumaPorcentajes5 += porcentaje;
+      contadorPorcentajes5++;
+
+      mensaje9 += `${pregunta}: Numero de 2 y 3: ${count4} Porcentaje: ${porcentaje}% \n`;
+    });
+
+    // Calcular el promedio de los porcentajes
+    const promedioPorcentajes5 = sumaPorcentajes5 / contadorPorcentajes5;
+
+// Agregar el promedio al mensaje
+    mensaje9 += `\nPromedio de los porcentajes: ${promedioPorcentajes5.toFixed(2)}%`;
+
+// Mostrar la cantidad total de valores "2" y "3" por pregunta en un único alert
+    //alert(mensaje9);
+
+    //CREACION DE TABLA----------------------------------------------------------------------------------------------------------
+
+    // Obtén el elemento con el ID 'tablaPromedios'
+    var tablaPromedios = document.getElementById('tablaPromedios');
+    var tabla; // Variable para almacenar la tabla
+
+// Verifica si la tabla ya existe, de lo contrario, crea una nueva tabla
+    if (tablaPromedios.getElementsByTagName('table').length === 0) {
+      // Crea una tabla
+      tabla = document.createElement('table');
+      tabla.id = 'miTabla'; // Asigna un ID a la tabla
+
+      // Crea una fila para el encabezado
+      var encabezado = tabla.insertRow();
+      var estandarEncabezadoCelda2 = encabezado.insertCell();
+      var encabezadoCelda = encabezado.insertCell();
+      var estandarEncabezadoCelda = encabezado.insertCell();
+      var estandarEncabezadoCelda3 = encabezado.insertCell();
+
+      estandarEncabezadoCelda2.textContent = 'Evaluacion CENS';
+      estandarEncabezadoCelda2.classList.add('evaluacion'); // Agrega la clase 'evaluacion' a la celda del encabezado
+      encabezadoCelda.textContent = 'Nota promedio POR AMBITO';
+      encabezadoCelda.classList.add('promedios'); // Agrega la clase 'promedios' a la celda del encabezado
+
+      estandarEncabezadoCelda.textContent = 'Estándar';
+      estandarEncabezadoCelda.classList.add('estandar');
+
+      estandarEncabezadoCelda3.textContent = '% de cumplimiento por ámbito';
+      estandarEncabezadoCelda3.classList.add('cumplimiento');
+
+      // Agrega la tabla al elemento 'tablaPromedios'
+      tablaPromedios.appendChild(tabla);
+    } else {
+      // Si la tabla ya existe, obtén la referencia a la tabla existente
+      tabla = tablaPromedios.getElementsByTagName('table')[0];
+    }
+
+
+// Resto del código para crear la tabla y las filas de datos.
+    // Función para redondear un número al entero más cercano
+    function redondear(numero) {
+      return Math.round(numero);
+    }
+
+// Función para crear una fila en la tabla o actualizar los valores existentes
+    function crearFila(nombreVariable, promedio, estandar, cumplimiento) {
+      var tablaExistente = document.getElementById('miTabla'); // Obtiene la referencia a la tabla existente
+      var filaExistente = tablaExistente.rows.namedItem(nombreVariable); // Busca una fila existente con el nombre de variable
+
+      if (filaExistente) {
+        // Si la fila ya existe, actualiza los valores de las celdas correspondientes
+        var promedioCelda = filaExistente.cells.namedItem('promedio');
+        var estandarCelda = filaExistente.cells.namedItem('estandar');
+        var cumplimientoCelda = filaExistente.cells.namedItem('cumplimiento');
+
+        promedioCelda.textContent = promedio.toFixed(2);
+        estandarCelda.textContent = redondear(estandar).toFixed(0);
+        cumplimientoCelda.textContent = redondear(cumplimiento).toFixed(0);
+      } else {
+        // Si la fila no existe, crea una nueva fila y agrega las celdas correspondientes
+        var fila = tabla.insertRow();
+        fila.id = nombreVariable; // Asigna el ID único a la fila
+
+        var nombreCelda = fila.insertCell();
+        nombreCelda.textContent = nombreVariable;
+
+        var promedioCelda = fila.insertCell();
+        promedioCelda.id = 'promedio'; // Asigna el ID único a la celda del promedio
+        promedioCelda.textContent = promedio.toFixed(2);
+
+        var estandarCelda = fila.insertCell();
+        estandarCelda.id = 'estandar'; // Asigna el ID único a la celda del estándar
+        estandarCelda.textContent = redondear(estandar).toFixed(0);
+
+        var cumplimientoCelda = fila.insertCell();
+        cumplimientoCelda.id = 'cumplimiento'; // Asigna el ID único a la celda del cumplimiento
+        cumplimientoCelda.textContent = redondear(cumplimiento).toFixed(0);
+      }
+    }// Función para crear una fila en la tabla o actualizar los valores existentes
+    function crearFila(nombreVariable, promedio, estandar, cumplimiento) {
+      var tablaExistente = document.getElementById('miTabla'); // Obtiene la referencia a la tabla existente
+      var filaExistente = tablaExistente.rows.namedItem(nombreVariable); // Busca una fila existente con el nombre de variable
+
+      if (filaExistente) {
+        // Si la fila ya existe, actualiza los valores de las celdas correspondientes
+        var promedioCelda = filaExistente.cells.namedItem('promedio');
+        var estandarCelda = filaExistente.cells.namedItem('estandar');
+        var cumplimientoCelda = filaExistente.cells.namedItem('cumplimiento');
+
+        promedioCelda.textContent = promedio.toFixed(2);
+        estandarCelda.textContent = redondear(estandar).toFixed(0);
+        cumplimientoCelda.textContent = redondear(cumplimiento).toFixed(0);
+      } else {
+        // Si la fila no existe, crea una nueva fila y agrega las celdas correspondientes
+        var fila = tabla.insertRow();
+        fila.id = nombreVariable; // Asigna el ID único a la fila
+
+        var nombreCelda = fila.insertCell();
+        nombreCelda.textContent = nombreVariable;
+
+        var promedioCelda = fila.insertCell();
+        promedioCelda.id = 'promedio'; // Asigna el ID único a la celda del promedio
+        promedioCelda.textContent = promedio.toFixed(2);
+
+        var estandarCelda = fila.insertCell();
+        estandarCelda.id = 'estandar'; // Asigna el ID único a la celda del estándar
+        estandarCelda.textContent = redondear(estandar).toFixed(0);
+
+        var cumplimientoCelda = fila.insertCell();
+        cumplimientoCelda.id = 'cumplimiento'; // Asigna el ID único a la celda del cumplimiento
+        cumplimientoCelda.textContent = redondear(cumplimiento).toFixed(0);
+      }
+    }
+
+// Crea una fila para cada variable y agrega las celdas correspondientes
+    crearFila('Proceso Clinico:', promedioTotal, promedioTotal, promedioPorcentajes);
+    crearFila('Interoperabilidad:', promedioInteroperabilidad, promedioInteroperabilidad, promedioPorcentajes2);
+    crearFila('Usabilidad:', promedioTotal2, promedioTotal2, promedioPorcentajes3);
+    crearFila('Fiabilidad:', promedioTotal3, promedioTotal3, promedioPorcentajes4);
+    crearFila('Seguridad:', promedioTotal4, promedioTotal4, promedioPorcentajes5);
+
+// Agrega la tabla al elemento 'tablaPromedios'
+    tablaPromedios.appendChild(tabla);
+
+// GRAFICO DE PROMEDIO----------------------------------------------------------------------------------
+
+    var ctxPromedios = document.getElementById('graficoPromedios').getContext('2d');
+    var ctxCumplimiento = document.getElementById('graficoCumplimiento').getContext('2d');
+
+    if (window.myBar) {
+      window.myBar.clear();
+      window.myBar.destroy();
+    }
+
+    window.myBar = new Chart(ctxPromedios, {
+      type: 'bar',
+      data: {
+        labels: ['Proceso Clínico', 'Interoperabilidad', 'Usabilidad', 'Fiabilidad', 'Seguridad'],
+        datasets: [{
+          label: 'Promedios',
+          data: [promedioTotal, promedioInteroperabilidad, promedioTotal2, promedioTotal3, promedioTotal4],
+          backgroundColor: 'rgba(54, 162, 235, 0.5)', // Color de fondo de las barras
+          borderColor: 'rgba(54, 162, 235, 1)', // Color del borde de las barras
+          borderWidth: 1 // Ancho del borde de las barras
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true // Comenzar el eje y en cero
+          }
+        }
+      }
+    });
+
+    if (window.myBar2) {
+      window.myBar2.clear();
+      window.myBar2.destroy();
+    }
+
+    window.myBar2 = new Chart(ctxCumplimiento, {
+      type: 'bar',
+      data: {
+        labels: ['Proceso Clínico', 'Interoperabilidad', 'Usabilidad', 'Fiabilidad', 'Seguridad'],
+        datasets: [{
+          label: 'Cumplimiento',
+          data: [promedioPorcentajes, promedioPorcentajes2, promedioPorcentajes3, promedioPorcentajes4, promedioPorcentajes5],
+          backgroundColor: 'rgba(255, 99, 132, 0.5)', // Color de fondo de las barras
+          borderColor: 'rgba(255, 99, 132, 1)', // Color del borde de las barras
+          borderWidth: 1 // Ancho del borde de las barras
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true // Comenzar el eje y en cero
+          }
+        }
+      }
+    });
+  }
+
+
+
+
+
+</script>
+
+<style>
+
+  .container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+
+  }
+  .table_promedio {
+    width: 500px;
+    height: 250px;
+
+
+  }
+
+  .chart-container1 {
+    float: right;
+    width: 500px;
+    height: 250px;
+
+
+
+
+  }
+
+  .chart-container2 {
+    float: left;
+    width: 500px;
+    height: 250px;
+
+
+
+  }
+
+  .chart-container3 {
+
+    width: 150px;
+    height: 150px;
+
+
+
+  }
+
+
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #4caf50;
+    color: white;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  .empresa-container {
+    margin-top: 20px;
+  }
+
+  .empresa-container h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .opciones-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .opciones-table th,
+  .opciones-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+
+  .opciones-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  .division-cell {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  .custom-button {
+    background-color: #559DFF;
+    color: white;
+    transition: background-color 0.3s;
+  }
+
+  .custom-button:hover {
+    background-color: #1D1A70;
+  }
+
+  /* Estilos para la tabla */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  /* Estilos para las filas de datos */
+  tr.data-row:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr.data-row:hover {
+    background-color: #e6e6e6;
+  }
+
+  /* Estilos para la columna "Promedios" */
+  .promedios {
+    text-align: left;
+  }
+
+  /* Estilos para la columna "Estándar" */
+  .estandar {
+    text-align: center;
+  }
+
+
+</style>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<footer th:replace="layout/layout :: footer"></footer>
+
+
+</body>
+</html>
